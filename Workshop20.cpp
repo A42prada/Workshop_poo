@@ -46,23 +46,26 @@ public:
     // Setters for the position
     void set_x(double x) { this->x = x; }
     void set_y(double y) { this->y = y; }
+    
+    // Set the position of the top left corner
+    void set_pos(double x, double y) {
+        this->set_x(x);
+        this->set_y(y);
+    }
+
+    // Calculate the perimeter of the rectangle
+    double perimeter() const {
+        return 2 * (this->w + this->h);
+    }
+
+    // Calculate the area of the rectangle
+    double area() const {
+        return this->w * this->h;
+    }
 
 private:
     double x, y, w, h; // Position of the top left corner, width, and height
 };
-
-// Set the position of the top left corner
-void set_pos(Rectangle *r, double x, double y) {
-    r->set_x(x);
-    r->set_y(y);
-}
-
-// Calculate the perimeter of the rectangle
-double perimeter(const Rectangle &r) {
-    return 2 * (r.get_w() + r.get_h());
-}
-
-// TODO: Add a method to calculate the area of the rectangle
 
 int main() {
     Circle c{0, 0, 1};
@@ -71,8 +74,8 @@ int main() {
     std::cout << "Coordinates of the center: (" << c.get_x() << ", " << c.get_y() << ")" << std::endl;
 
     Rectangle r{0, 0, 1, 2};
-    std::cout << perimeter(r) << std::endl;
-    set_pos(&r, -1, -1);
+    std::cout << r.perimeter() << std::endl;
+    r.set_pos(-1, -1);
     std::cout << "Coordinates of the top left corner: (" << r.get_x() << ", " << r.get_y() << ")" << std::endl;
     return 0;
 }
